@@ -1,43 +1,35 @@
 ---
-
+# Java Application Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: myjavaapp-deploy
-  labels:
-    app: myjavaapp
+  name: bankapp
 spec:
-  replicas: 3
+  replicas: 1
   selector:
-      matchLabels:
-         app: myjavaapp
+    matchLabels:
+      app: bankapp
   template:
-     metadata:
-       labels:
-         app: myjavaapp
-     spec:
-       containers:
-       - name: myjavaapp-container
-         image:  maha4iac/myjavaapp001122:latest
-         ports:
-         - containerPort: 8080
-
+    metadata:
+      labels:
+        app: bankapp
+    spec:
+      containers:
+      - name: bankapp
+        image: maha4iac/myjavaapp001122:latest
+        ports:
+        - containerPort: 8080
+  
 ---
-
+# Bank Application Service
 apiVersion: v1
 kind: Service
 metadata:
-   name: myjavaapp-svc
-   labels:
-     app: myjavaapp
-
-     
+  name: bankapp-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
-  - port: 8080
-    nodePort: 30001
-    protocol: TCP
+  - port: 80
+    targetPort: 8080
   selector:
-     app: myjavaapp
- 
+    app: bankapp

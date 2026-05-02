@@ -110,9 +110,8 @@ jobs:
       with:
         name: my-artifact
         path: target/
-    - name: Build Docker image
-      run: docker build -t my-java-app:latest .   
-    
+
+
 
 
  

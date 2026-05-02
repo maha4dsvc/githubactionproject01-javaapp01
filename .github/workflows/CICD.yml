@@ -44,6 +44,7 @@ jobs:
       run: gitleaks detect --source . --report-format json --report-path gitleaks_report.json
 
 
+
     
 
  

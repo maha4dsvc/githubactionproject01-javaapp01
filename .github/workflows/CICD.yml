@@ -85,7 +85,6 @@ jobs:
         fetch-depth: 0
     - name: SonarQube Scan
       uses: SonarSource/sonarqube-scan-action@v5.0.0 # Ex: v4.1.0, or sha1, See the latest version at https://github.com/marketplace/actions/official-sonarqube-scan
-      continue-on-error: true
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }}
@@ -94,6 +93,7 @@ jobs:
     - name: SonarQube Quality Gate check
       id: sonarqube-quality-gate-check
       uses: sonarsource/sonarqube-quality-gate-action@master
+      continue-on-error: true
       with:
          pollingTimeoutSec: 600
       env:

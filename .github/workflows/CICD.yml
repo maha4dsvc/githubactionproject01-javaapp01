@@ -8,7 +8,7 @@ on:
 jobs:
   compile:
     runs-on: self-hosted
-
+    # install maven on runner 
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 17
@@ -75,7 +75,7 @@ jobs:
         name: my-artifact
         path: target/*.war
 
-
+    # install   unzip on runner 
     - name: Install unzip
       run: sudo apt-get update && sudo apt-get install -y unzip
 
@@ -99,7 +99,7 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL }} 
-
+  # install docker on runner and set user and group
   build_docker_image_and_push:
     runs-on: self-hosted
     needs: package_and_sonar
